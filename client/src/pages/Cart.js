@@ -1,6 +1,6 @@
 import React from "react";
 
-function Cart({ cart }) {
+function Cart({ cart, nullCart }) {
    const total = cart.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
@@ -20,7 +20,8 @@ function Cart({ cart }) {
                ))}
             </ul>
          )}
-         <h2>Total: {total} ₽</h2>
+         <h2>Total: {total.toFixed(2)} ₽</h2>
+         <button onClick={nullCart}> Удалить корзину </button>
       </div>
    );
 }

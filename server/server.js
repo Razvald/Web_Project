@@ -4,7 +4,7 @@ const usersRouter = require("./routes/users");
 const ordersRouter = require("./routes/orders");
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(express.json());
 
