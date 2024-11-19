@@ -1,14 +1,15 @@
-// src/App.js
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
-import Home from "./components/Home";
-import Catalog from "./components/Catalog";
-import PizzaDetail from "./components/PizzaDetail";
-import Cart from "./components/Cart";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Profile from "./components/Profile";
+
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
+import PizzaDetail from "./pages/PizzaDetail";
+import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
    const [pizzas, setPizzas] = useState([]);
@@ -21,20 +22,15 @@ function App() {
          .then((data) => setPizzas(data));
 
       const savedCart = localStorage.getItem("cart");
-      if (savedCart) {
-         setCart(JSON.parse(savedCart));
-      }
+      if (savedCart) setCart(JSON.parse(savedCart));
    }, []);
 
    const addToCart = (pizza) => {
       setCart((prevCart) => {
          const updatedCart = [...prevCart];
          const pizzaInCart = updatedCart.find((item) => item.id === pizza.id);
-         if (pizzaInCart) {
-            pizzaInCart.quantity += 1;
-         } else {
-            updatedCart.push({ ...pizza, quantity: 1 });
-         }
+         if (pizzaInCart) pizzaInCart.quantity += 1;
+         else updatedCart.push({ ...pizza, quantity: 1 });
          localStorage.setItem("cart", JSON.stringify(updatedCart));
          return updatedCart;
       });
@@ -46,8 +42,7 @@ function App() {
    };
 
    const logoutUser = () => {
-      localStorage.removeItem("user");
-      localStorage.removeItem("cart");
+      localStorage.clear();
       setUser(null);
       setCart([]);
    };

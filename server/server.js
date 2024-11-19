@@ -1,34 +1,17 @@
-// server/server.js
 const express = require("express");
+const pizzasRouter = require("./routes/pizzas");
+const usersRouter = require("./routes/users");
+const ordersRouter = require("./routes/orders");
+
 const app = express();
+const PORT = 3000;
 
-// Данные для пиццы
-const pizzas = [
-   {
-      id: 1,
-      name: "Маргарита",
-      price: 300,
-      ingredients: ["сыр", "томатный соус", "базилик"],
-   },
-   {
-      id: 2,
-      name: "Пепперони",
-      price: 350,
-      ingredients: ["сыр", "томатный соус", "пепперони"],
-   },
-   {
-      id: 3,
-      name: "Гавайская",
-      price: 400,
-      ingredients: ["сыр", "томатный соус", "ананас", "ветчина"],
-   },
-];
+app.use(express.json());
 
-// Новый маршрут для пиццы
-app.get("/api/pizzas", (req, res) => {
-   res.json(pizzas);
-});
+app.use("/api/pizzas", pizzasRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/orders", ordersRouter);
 
-app.listen(5000, () => {
-   console.log("Server running on port 5000");
+app.listen(PORT, () => {
+   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,20 +1,22 @@
-// src/components/Header.js
+import React from "react";
 import { Link } from "react-router-dom";
 
 function Header({ user, logoutUser }) {
    return (
-      <nav>
-         <Link to="/">Главная</Link> | <Link to="/catalog">Каталог пицц</Link> |{" "}
-         <Link to="/cart">Корзина</Link> |{" "}
-         {user ? (
-            <>
-               <Link to="/profile">Личный кабинет</Link> |{" "}
-               <button onClick={logoutUser}>Выйти</button>
-            </>
-         ) : (
-            <Link to="/login">Авторизация</Link>
-         )}
-      </nav>
+      <header>
+         <nav>
+            <Link to="/">Home</Link> | <Link to="/catalog">Catalog</Link> |{" "}
+            <Link to="/cart">Cart</Link> |{" "}
+            {user ? (
+               <>
+                  <Link to="/profile">Profile</Link>
+                  <button onClick={logoutUser}>Logout</button>
+               </>
+            ) : (
+               <Link to="/login">Login</Link>
+            )}
+         </nav>
+      </header>
    );
 }
 
