@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 
 const Catalog = ({ addToCart }) => {
-   const [pizzas, setPizzas] = useState([]);
+   const [pizzas, setPizzas] = useState([]); // Гарантирует, что начальное значение — массив
 
    useEffect(() => {
       const fetchPizzas = async () => {
-         const response = await fetch("/api/pizzas");
-         const data = await response.json();
-         setPizzas(data);
+         try {
+            const response = await fetch("/api/pizzas");
+            const data = await response.json();
+            if (Array.isArray(data)) {
+               setPizzas(data);
+            } else {
+               console.error("Получены некорректные данные:", data);
+               setPizzas([]); // Устанавливаем пустой массив, если данные некорректны
+            }
+         } catch (error) {
+            console.error("Ошибка при получении данных:", error);
+            setPizzas([]); // Устанавливаем пустой массив в случае ошибки
+         }
       };
       fetchPizzas();
    }, []);

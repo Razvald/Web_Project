@@ -5,12 +5,8 @@
 1. Install dependencies:
    npm install
 
-markdown
-
 2. Start the development server:
    npm start
-
-markdown
 
 3. Access the application at `http://localhost:3000`.
 

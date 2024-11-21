@@ -12,6 +12,7 @@
    "license": "ISC",
    "description": "",
    "dependencies": {
+      "bcrypt": "^5.1.1",
       "express": "^4.21.1",
       "msnodesqlv8": "^4.2.1",
       "mssql": "^11.0.1"
